@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CalendarTester</string>
+
+    <!-- Permission dialog -->
+    <string name="permission_dialog_title">Calendar Permission Request</string>
+    <string name="dialog_message">Read calendar access is required for this functionality. Want to grant permission?</string>
+    <string name="no_permission_alert">No permission to read calendar. Please activate this permission in device settings</string>
+
+</resources>
