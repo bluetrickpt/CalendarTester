@@ -5,6 +5,7 @@
 This small app serves as an example of how one can retrieve the events from the installed calendars.
 
 Currently retrieves, for each event:
+
             CalendarContract.Events._ID,
             CalendarContract.Events.CALENDAR_ID,
             CalendarContract.Events.EVENT_LOCATION,
