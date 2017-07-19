@@ -15,6 +15,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -42,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
             CalendarContract.Events.GUESTS_CAN_SEE_GUESTS
     };
 
+    private TextView[] lastEventTextViews = new TextView[FIELDS.length];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initializeLastEventTextViews();
 
         Button getLogBtn = (Button) findViewById(R.id.get_log_btn);
         getLogBtn.setOnClickListener(new View.OnClickListener() { //On button click, runs our permission logger (runPermissionLogger())
@@ -68,8 +75,12 @@ public class MainActivity extends AppCompatActivity {
                 if(eventCount > 0) { //there's at least one event
                     while(eventCursor.moveToNext()) {
                         Log.d(TAG, "Event " + (eventCursor.getPosition()+1) + " of " + eventCount);
-                        for (String field : FIELDS) {
-                            Log.d(TAG, field + ": " + eventCursor.getString(eventCursor.getColumnIndex(field)));
+                        //for (String field : FIELDS) {
+                        for(int fIndex=0; fIndex<FIELDS.length; ++fIndex) {
+                            String field = FIELDS[fIndex];
+                            String value = eventCursor.getString(eventCursor.getColumnIndex(field));
+                            Log.d(TAG, field + ": " + value);
+                            updateLastEventTextView(fIndex, value);
                         }
                     }
                 } else {
@@ -138,5 +149,29 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    private void initializeLastEventTextViews() {
+
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.last_event_table);
+
+        for (int i = 0; i < tableLayout.getChildCount(); i++) {
+            View child = tableLayout.getChildAt(i);
+
+            if (child instanceof TableRow) {
+                TableRow row = (TableRow) child;
+
+                lastEventTextViews[i] = (TextView) row.getChildAt(1);
+            } else {
+                Log.e(TAG, "Error: table child is not a table row");
+            }
+        }
+    }
+
+    private void updateLastEventTextView(int textViewIndex, String text) {
+        if(lastEventTextViews[textViewIndex] != null)
+            lastEventTextViews[textViewIndex].setText(text);
+        else
+            Log.e(TAG, "Undefined error. Check number of fields and number of table rows.");
     }
 }

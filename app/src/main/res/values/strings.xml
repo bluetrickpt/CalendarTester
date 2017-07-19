@@ -6,4 +6,24 @@
     <string name="dialog_message">Read calendar access is required for this functionality. Want to grant permission?</string>
     <string name="no_permission_alert">No permission to read calendar. Please activate this permission in device settings</string>
 
+    <!-- Last event display -->
+    <string name="event_display_title">Last collected event:</string>
+    <string name="event_id">Event ID:</string>
+    <string name="event_calendar_id">Calendar ID:</string>
+    <string name="event_location">Location:</string>
+    <string name="event_start_date">Start:</string>
+    <string name="event_end_date">End:</string>
+    <string name="event_timezone">Init Timezone:</string>
+    <string name="event_end_timezone">End Timezone:</string>
+    <string name="event_duration">Duration:</string>
+    <string name="event_all_day">All Day:</string>
+    <string name="event_rrule">Recurrence Rule:</string>
+    <string name="event_rdate">Recurrence Date:</string>
+    <string name="event_availability">Availability:</string>
+    <string name="event_guests_modify">Guest Modifiable:</string>
+    <string name="event_guests_invite">Guests Can Invite:</string>
+    <string name="event_guests_visible">Visible Guests:</string>
+
+
+
 </resources>
