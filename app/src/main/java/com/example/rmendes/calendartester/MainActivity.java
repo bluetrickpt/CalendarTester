@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     final private int REQUEST_PERMISSION_CODE = 123;
 
     public static final String[] FIELDS = { //This list is not a complete set of event information
+            // If this is updated, don't forget to update the file strings.xml
             CalendarContract.Events._ID,
             CalendarContract.Events.CALENDAR_ID,
             CalendarContract.Events.EVENT_LOCATION,
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
             CalendarContract.Events.AVAILABILITY,
             CalendarContract.Events.GUESTS_CAN_MODIFY,
             CalendarContract.Events.GUESTS_CAN_INVITE_OTHERS,
-            CalendarContract.Events.GUESTS_CAN_SEE_GUESTS
+            CalendarContract.Events.GUESTS_CAN_SEE_GUESTS,
+            CalendarContract.Events.DIRTY
     };
 
     private TextView[] lastEventTextViews = new TextView[FIELDS.length];
@@ -155,16 +157,16 @@ public class MainActivity extends AppCompatActivity {
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.last_event_table);
 
-        for (int i = 0; i < tableLayout.getChildCount(); i++) {
-            View child = tableLayout.getChildAt(i);
+        String[] last_event_fields_strings = getResources().getStringArray(R.array.last_event_fields);
 
-            if (child instanceof TableRow) {
-                TableRow row = (TableRow) child;
+        for(int field_idx=0; field_idx<last_event_fields_strings.length; ++field_idx) {
+            String field_string = last_event_fields_strings[field_idx];
+            TableRow tr = (TableRow) getLayoutInflater().inflate(R.layout.event_table_row, tableLayout,false);
+            TextView field_textview = (TextView) tr.getChildAt(0);
+            field_textview.setText(field_string);
+            tableLayout.addView(tr);
 
-                lastEventTextViews[i] = (TextView) row.getChildAt(1);
-            } else {
-                Log.e(TAG, "Error: table child is not a table row");
-            }
+            lastEventTextViews[field_idx] = (TextView) tr.getChildAt(1);
         }
     }
 

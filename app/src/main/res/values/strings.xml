@@ -24,6 +24,22 @@
     <string name="event_guests_invite">Guests Can Invite:</string>
     <string name="event_guests_visible">Visible Guests:</string>
 
-
+    <string-array name="last_event_fields">
+        <item>@string/event_id</item>
+        <item>@string/event_calendar_id</item>
+        <item>@string/event_location</item>
+        <item>@string/event_start_date</item>
+        <item>@string/event_end_date</item>
+        <item>@string/event_timezone</item>
+        <item>@string/event_end_timezone</item>
+        <item>@string/event_duration</item>
+        <item>@string/event_all_day</item>
+        <item>@string/event_rrule</item>
+        <item>@string/event_rdate</item>
+        <item>@string/event_availability</item>
+        <item>@string/event_guests_modify</item>
+        <item>@string/event_guests_invite</item>
+        <item>@string/event_guests_visible</item>
+    </string-array>
 
 </resources>
